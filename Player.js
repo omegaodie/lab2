@@ -1,29 +1,36 @@
-var x, y;
+var xPos, yPos, myColour;
 function Player(ctx){
-	x = 20;
-	y = 20;
+	xPos = 20;
+	yPos = 20;
 	this.draw(ctx);
+	myColour = "#7FFF00";
 }
 
 Player.prototype.draw = function(ctx){
-	ctx.fillStyle="#FF0000";
-	ctx.fillRect(x,y,75,75);
+	ctx.fillStyle=myColour;
+	ctx.fillRect(xPos,yPos,75,75);
+	//console.log("pfffffff");
 }
 
 Player.prototype.update = function(e){
-	var kode = e.keycode;
-	console.log(kode);
+	var kode = e.keyCode;
+	if(kode == 97){
+		xPos -= 25;
+	}
+	if(kode == 100){
+		xPos += 25;
+	}
+	if(kode == 119){
+		yPos -= 25;
+	}
+	if(kode == 115){
+		yPos += 25;
+	}
+}
 
-	if(kode == 87){
-		y += 50;
-	}
-	if(kode == 68){
-		x += 50;
-	}
-	if(kode == 83){
-		y -= 50;
-	}
-	if(kode == 65){
-		x -= 50;
-	}
+Player.prototype.checkCollision = function (e){
+        if ((xPos < 480 + 175)&&(xPos + 75 > 480)&&(yPos + 475 > 670)&&(yPos < 670 + 175))
+        {                
+            myColour = "#000000";              
+        }
 }
