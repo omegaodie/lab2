@@ -1,36 +1,36 @@
-var xPos, yPos, myColour;
 function Player(ctx){
-	xPos = 20;
-	yPos = 20;
+	this.xPos = 20;
+	this.yPos = 20;
 	this.draw(ctx);
-	myColour = "#7FFF00";
+	this.myColour = "#7FFF00";
+	this.ReturnBool = false;
 }
 
 Player.prototype.draw = function(ctx){
-	ctx.fillStyle=myColour;
-	ctx.fillRect(xPos,yPos,75,75);
-	//console.log("pfffffff");
+	ctx.fillStyle=this.myColour;
+	ctx.fillRect(this.xPos,this.yPos,75,75);
 }
 
 Player.prototype.update = function(e){
 	var kode = e.keyCode;
 	if(kode == 97){
-		xPos -= 25;
+		this.xPos -= 25;
 	}
 	if(kode == 100){
-		xPos += 25;
+		this.xPos += 25;
 	}
 	if(kode == 119){
-		yPos -= 25;
+		this.yPos -= 25;
 	}
 	if(kode == 115){
-		yPos += 25;
+		this.yPos += 25;
 	}
 }
 
-Player.prototype.checkCollision = function (e){
-        if ((xPos < 480 + 175)&&(xPos + 75 > 480)&&(yPos + 475 > 670)&&(yPos < 670 + 175))
+Player.prototype.checkCollision = function (goal){
+        if ((this.xPos < goal.bx + goal.bheight)&&(this.xPos + 75 > goal.bx)&&(this.yPos + 75 > goal.by)&&(this.yPos < goal.by + goal.bheight))
         {                
-            myColour = "#000000";              
+            this.myColour = "#000000";
+            this.ReturnBool = true;              
         }
 }
