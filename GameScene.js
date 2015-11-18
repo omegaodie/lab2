@@ -5,7 +5,6 @@ function GameScene(ctx){
 
 
 GameScene.prototype.update = function(e, ctx){
-	console.log(ctx);
 	ctx.clearRect(0,0, 10000,10000);
 	if(player.ReturnBool == false){
 		player.draw(ctx);
